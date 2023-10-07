@@ -19,16 +19,17 @@ def main():
         hourlyRate = float(input("Hourly pay rate: $"))
         weeklyHours = int(input("Hours worked per week: "))
 
-    expenseList = []
+    
     if str(input("Are there any expenses you want to declare [Y/N]: ")).lower() == "y":
+        expenseList = []
         while 1:
-            tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
             tempExpenseName = str(input("Enter the expense name: "))
             tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
             tempEpenseAmount = float(input("Enter the amount of this expense: $"))
             tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
+            tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
             expenseList.append(tempExpenseObj)
-            if str(("")) == "n":
+            if str(input("Are there anymore expenses you want to list? [Y/N]: ")).lower() == "n":
                 break
    
     #User Information Calculations
