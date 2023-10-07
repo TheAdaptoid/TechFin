@@ -1,18 +1,30 @@
 #Local Imports
 import Calculations
+import OpenIntegrations as OI
 
 def main():
-    print ("Hello World")
+    print("|| FinanceGPT ||")
 
-    #Initializing User Information
-    hourlyRate = float(input("What is your hourly pay rate: "))
-    weeklyHours = int(input("How many hours do you work per week: "))
+    #User Information Prompting
+    firstName = str(input("First Name: "))
+    lastName = str(input("Last Name: "))
+    location = str(input("City of residence: "))
 
+    isEmployed = False
+    hourlyRate = 0
+    weeklyHours = 0
+    if str(input("Are you employed? [Y/N]: ")).lower() == "y":
+        isEmployed = True
+        hourlyRate = float(input("Hourly pay rate: "))
+        weeklyHours = int(input("Hours worked per week: "))
+
+    #User Information Calculations
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
     taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours))
     
     #send to gpt
     print(f"You make ${grossWeeklyIncome} per week.")
     print(f"You make ${taxedWeeklyIncome} per week after tax.")
-    print(f"${Calculations.Calc_Weekly_Income_After_Tax(taxedWeeklyIncome)}")
+    print(f"${Calculations.Calc_Weekly_Income_After_Tax(grossWeeklyIncome)}")
+
 main()
