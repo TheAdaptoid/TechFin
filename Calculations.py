@@ -3,7 +3,7 @@ import Expenses
 
 def Expense_Category_Dictionary():
     expenseCategoryDict = {
-        "Bills/Utilities" : 0,
+        "Bills & Utilities" : 0,
         "Transportation" : 0,
         "Groceries" : 0,
         "Dining" : 0,
