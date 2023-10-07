@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+def Expense(self, expenseName:str, enpenseCategory:str, expenseAmount:str, expenseFrequency:str):
+    self.expenseName
+    self.expenseCategory
+    self.expenseAmount
+    self.expenseFrequency
+=======
 class Expense:
     def __init__(self, expenseName:str, expenseCategory:str, expenseAmount:float, expenseFrequency:str):
         self.expenseName = expenseName
@@ -16,3 +23,4 @@ class Expense:
 
     def Get_Frequency(self):
         return str(self.expenseFrequency)
+>>>>>>> abbba8009b27a617f2287f0049672f36a255b0dd
