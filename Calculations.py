@@ -1,4 +1,16 @@
-#Calculations
+#Local Imports
+import Expenses
+
+def Expense_Category_Dictionary():
+    expenseCategoryDict = {
+        "Bills/Utilities" : 0,
+        "Transportation" : 0,
+        "Groceries" : 0,
+        "Dining" : 0,
+        "Subscriptions" : 0,
+    }
+
+    return expenseCategoryDict
 
 def Calc_Weekly_Income(hourlyRate:float, workingHours:int):
     weeklyIncome = hourlyRate * workingHours
@@ -42,3 +54,8 @@ def Calc_Weekly_Income_After_Tax(anualIncome:float):
     weeklyTaxedIncome /= 52
     return weeklyTaxedIncome
 
+def Calc_Expense_Breakdown(expenseList:list):
+    localExpenseDict = Expense_Category_Dictionary()
+    for expense in expenseList:
+        localExpenseDict[expense.Get_Category()] =  localExpenseDict[expense.Get_Category()] + expense.Get_Amount()
+    return localExpenseDict
