@@ -1,6 +1,14 @@
 #Local Imports
 import Expenses
 
+def Yes_No_Dictionary():
+    yesNoDict = {
+        "Yes" : 1,
+        "No" : 0,
+    }
+
+    return yesNoDict
+
 def Expense_Category_Dictionary():
     expenseCategoryDict = {
         "Bills & Utilities" : 0,
