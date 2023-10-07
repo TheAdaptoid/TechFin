@@ -7,10 +7,12 @@ def main():
     #Initializing User Information
     hourlyRate = float(input("What is your hourly pay rate: "))
     weeklyHours = int(input("How many hours do you work per week: "))
-    incomeTaxRate = 0.1 #federal
 
+    grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
+    taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours))
+    
     #send to gpt
-    print(f"You make ${Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)} per week.")
-    print(f"You make ${Calculations.Calc_Weekly_Income_After_Tax(Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours), incomeTaxRate)} per week after tax.")
-
+    print(f"You make ${grossWeeklyIncome} per week.")
+    print(f"You make ${taxedWeeklyIncome} per week after tax.")
+    print(f"${Calculations.Calc_Weekly_Income_After_Tax(grossWeeklyIncome)}")
 main()
