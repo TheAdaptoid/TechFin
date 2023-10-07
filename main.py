@@ -36,7 +36,7 @@ def main():
 
     #User Information Calculations
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
-    taxedAnualIncome =Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
+    taxedAnualIncome = Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
     taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(taxedAnualIncome)
     
     #send to gpt
