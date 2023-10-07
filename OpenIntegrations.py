@@ -30,4 +30,3 @@ def Announce_Income(grossIncome:float, grossIncomeAfterTax:float, userName:str):
     return result()
 
 #debuggin
-print(Announce_Income(1000.0,950.0,"Mark"))
