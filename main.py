@@ -21,21 +21,16 @@ def main():
 
     expenseList = []
     if str(input("Are there any expenses you want to declare [Y/N]: ")).lower() == "y":
-        tempExpenseName = str(input("Enter the expense name: "))
-        tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
-        tempEpenseAmount = float(input("Enter the amount of this expense: $"))
-        tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
-        tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
         while 1:
-            expenseList.append(tempExpenseObj)
+            tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
             tempExpenseName = str(input("Enter the expense name: "))
             tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
             tempEpenseAmount = float(input("Enter the amount of this expense: $"))
             tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
-            
-            if str(input("Are there any more expenses you haven't listed yet? [Y/N]: ").lower() == "n"):
-                 break
-
+            expenseList.append(tempExpenseObj)
+            if str(("")) == "n":
+                break
+   
     #User Information Calculations
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
     taxedAnualIncome = Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
