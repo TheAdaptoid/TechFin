@@ -1,8 +1,12 @@
+#Imports
+import os
+
 #Local Imports
 import Calculations
 import OpenIntegrations as OI
 
 def main():
+    os.system('cls')
     print("|| FinanceGPT ||")
 
     #User Information Prompting
@@ -22,8 +26,10 @@ def main():
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
     taxedAnualIncome =Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
     taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(taxedAnualIncome)
+    
     #send to gpt
     print(f"You make ${grossWeeklyIncome} per week.")
     print(f"You make ${round(taxedWeeklyIncome,2)} per week after tax.")
     print(f"${taxedAnualIncome}")
+
 main()
