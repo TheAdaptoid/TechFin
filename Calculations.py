@@ -38,8 +38,7 @@ def Calc_Anual_Income_After_Tax(weeklyIncome:float):
     return taxedAnualIncome
 
 def Calc_Weekly_Income_After_Tax(anualIncome:float):
-    weeklyTaxedIncome = Calc_Anual_Income_After_Tax(anualIncome)
+    weeklyTaxedIncome = anualIncome
     weeklyTaxedIncome /= 52
     return weeklyTaxedIncome
 
-print(f"{Calc_Anual_Income_After_Tax(100.0)}")
