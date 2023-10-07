@@ -9,10 +9,10 @@ class Expense:
         return str(self.expenseName)
 
     def Get_Category(self):
-        return str(self.expenseCategory)
+        return str(self.expenseCategory).title()
 
     def Get_Amount(self):
         return float(self.expenseAmount)
 
     def Get_Frequency(self):
-        return str(self.expenseFrequency)
+        return str(self.expenseFrequency).title()

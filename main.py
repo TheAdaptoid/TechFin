@@ -1,11 +1,17 @@
+#Imports
+from os import system
+
 #Local Imports
 import Calculations
 import OpenIntegrations as OI
 import Expenses
+
 def main():
+    system("cls")
     print("|| FinanceGPT ||")
 
     #User Information Prompting
+    '''
     firstName = str(input("First Name: "))
     lastName = str(input("Last Name: "))
     location = str(input("City of residence: "))
@@ -18,27 +24,34 @@ def main():
         isEmployed = True
         hourlyRate = float(input("Hourly pay rate: $"))
         weeklyHours = int(input("Hours worked per week: "))
-
-    
+    '''
+        
     if str(input("Are there any expenses you want to declare [Y/N]: ")).lower() == "y":
         expenseList = []
         while 1:
             tempExpenseName = str(input("Enter the expense name: "))
-            tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
+            print(f"Enter the expense category. Options: {list(Calculations.Expense_Category_Dictionary().keys())}")
+            tempExpenseCat = Calculations.Input_Checking(Calculations.Expense_Category_Dictionary())
             tempEpenseAmount = float(input("Enter the amount of this expense: $"))
-            tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
-            tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
+            print(f"Enter the expense frequency. Options: {list(Calculations.Expense_Frequency_Dictionary().keys())}")
+            tempExpenseFreq =  Calculations.Input_Checking(Calculations.Expense_Frequency_Dictionary())
+
+            tempExpenseObj = Expenses.Expense(tempExpenseName, tempExpenseCat, tempEpenseAmount, tempExpenseFreq)
             expenseList.append(tempExpenseObj)
+
+            #Check for more expenses
             if str(input("Are there anymore expenses you want to list? [Y/N]: ")).lower() == "n":
                 break
    
     #User Information Calculations
+    '''
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
-    taxedAnualIncome = Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
-    taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(taxedAnualIncome)
+    taxedAnnualIncome = Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
+    taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(taxedAnnualIncome)
+    '''
     
     #send to gpt
-    print(f"You make ${grossWeeklyIncome} per week.")
-    print(f"You make ${round(taxedWeeklyIncome,2)} per week after tax.")
-    print(f"${taxedAnualIncome}")
+    largestExpense = Calculations.Calc_Largest_Expense(expenseList)
+    print(largestExpense)
+
 main()
