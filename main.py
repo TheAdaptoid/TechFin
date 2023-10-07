@@ -14,5 +14,5 @@ def main():
     #send to gpt
     print(f"You make ${grossWeeklyIncome} per week.")
     print(f"You make ${taxedWeeklyIncome} per week after tax.")
-    print(f"${Calculations.Calc_Weekly_Income_After_Tax(grossWeeklyIncome)}")
+    print(f"${Calculations.Calc_Weekly_Income_After_Tax(taxedWeeklyIncome)}")
 main()
