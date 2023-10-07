@@ -1,5 +1,5 @@
 class Expense:
-    def Expense(self, expenseName:str, expenseCategory:str, expenseAmount:float, expenseFrequency:str):
+    def __init__(self, expenseName:str, expenseCategory:str, expenseAmount:float, expenseFrequency:str):
         self.expenseName = expenseName
         self.expenseCategory = expenseCategory
         self.expenseAmount = expenseAmount
