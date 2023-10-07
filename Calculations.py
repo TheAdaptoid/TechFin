@@ -59,3 +59,4 @@ def Calc_Expense_Breakdown(expenseList:list):
     for expense in expenseList:
         localExpenseDict[expense.Get_Category()] =  localExpenseDict[expense.Get_Category()] + expense.Get_Amount()
     return localExpenseDict
+

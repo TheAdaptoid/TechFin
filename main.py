@@ -16,23 +16,25 @@ def main():
     
     if str(input("Are you employed? [Y/N]: ")).lower() == "y":
         isEmployed = True
-        hourlyRate = float(input("Hourly pay rate: "))
+        hourlyRate = float(input("Hourly pay rate: $"))
         weeklyHours = int(input("Hours worked per week: "))
 
-    hasAnotherExpense = True
     expenseList = []
-
-    while hasAnotherExpense:
+    if str(input("Are there any expenses you want to declare [Y/N]: ")).lower() == "y":
         tempExpenseName = str(input("Enter the expense name: "))
         tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
-        tempEpenseAmount = str(input("Enter the amount of this expense: "))
+        tempEpenseAmount = float(input("Enter the amount of this expense: $"))
         tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
         tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
-        
-        expenseList.append(tempExpenseObj)
-        
-        if str(input("Are there any more expenses you haven't listed yet? [Y/N]: ").lower() == "n"):
-            hasAnotherExpense = False
+        while 1:
+            expenseList.append(tempExpenseObj)
+            tempExpenseName = str(input("Enter the expense name: "))
+            tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
+            tempEpenseAmount = float(input("Enter the amount of this expense: $"))
+            tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
+            
+            if str(input("Are there any more expenses you haven't listed yet? [Y/N]: ").lower() == "n"):
+                 break
 
     #User Information Calculations
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
