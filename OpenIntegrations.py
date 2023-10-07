@@ -24,5 +24,10 @@ def Trip_Plan_Suggestion(location:str, budget:float):
     result = OpenAiConnection.create_semantic_function(inputPrompt)
     return result()
 
+def Announce_Income(grossIncome:float, grossIncomeAfterTax:float, userName:str):
+    inputPrompt = f"Inform {userName} that they made ${grossIncome} in gross income and ${grossIncomeAfterTax} after federal taxes. Include a disclamer that the after tax income was calculated assuming that {userName} does not file jointly."
+    result = OpenAiConnection.create_semantic_function(inputPrompt)
+    return result()
+
 #debuggin
-print(Trip_Plan_Suggestion("Cuba", '1000'))
+print(Announce_Income(1000.0,950.0,"Mark"))
