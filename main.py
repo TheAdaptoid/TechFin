@@ -1,7 +1,7 @@
 #Local Imports
 import Calculations
 import OpenIntegrations as OI
-
+import Expenses
 def main():
     print("|| FinanceGPT ||")
 
@@ -19,8 +19,21 @@ def main():
         hourlyRate = float(input("Hourly pay rate: "))
         weeklyHours = int(input("Hours worked per week: "))
 
-    expensesTotal = float(input("expenses: "))
-    
+    hasAnotherExpense = True
+    expenseList = []
+
+    while hasAnotherExpense:
+        tempExpenseName = str(input("Enter the expense name: "))
+        tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
+        tempEpenseAmount = str(input("Enter the amount of this expense: "))
+        tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
+        tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, enpenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
+        
+        expenseList.append(tempExpenseObj)
+        
+        if str(input("Are there any more expenses you haven't listed yet? [Y/N]: ").lower() == "n"):
+            hasAnotherExpense = False
+
     #User Information Calculations
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
     taxedAnualIncome = Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
