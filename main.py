@@ -27,7 +27,7 @@ def main():
         tempExpenseCat = str(input("Enter the expense category [Bills & Utilities, Subscriptions, Transportation, Dining, Groceries]: "))
         tempEpenseAmount = str(input("Enter the amount of this expense: "))
         tempExpenseFreq =  str(input("How frequent is this expense [Weekly, Monthly, Yearly]: "))
-        tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, enpenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
+        tempExpenseObj = Expenses.Expense(expenseName= tempExpenseName, expenseCategory= tempExpenseCat, expenseAmount= tempEpenseAmount, expenseFrequency= tempExpenseFreq)
         
         expenseList.append(tempExpenseObj)
         
