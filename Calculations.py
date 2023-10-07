@@ -1,6 +1,14 @@
 #Local Imports
 import Expenses
 
+def Yes_No_Dictionary():
+    yesNoDict = {
+        "Yes" : 1,
+        "No" : 0,
+    }
+
+    return yesNoDict
+
 def Expense_Category_Dictionary():
     expenseCategoryDict = {
         "Bills & Utilities" : 0,
@@ -11,6 +19,24 @@ def Expense_Category_Dictionary():
     }
 
     return expenseCategoryDict
+
+def Expense_Frequency_Dictionary():
+    expenseFrequencyDict = {
+        "Weekly" : 0,
+        "Monthly" : 0,
+        "Yearly" : 0,
+    }
+
+    return expenseFrequencyDict
+
+def Input_Checking(optionDict:dict):
+    option = str(input(""))
+    while True:
+        if option in optionDict.keys():
+            return option
+        else:
+            print(f"Please enter a valid keyword. Options: {list(optionDict.keys())}")
+            option = str(input("Keyword: "))
 
 def Calc_Weekly_Income(hourlyRate:float, workingHours:int):
     weeklyIncome = hourlyRate * workingHours
