@@ -19,7 +19,7 @@ layout = [
          [sg.Push(),sg.Input(size=(130,400), key = '-IN-', do_not_clear=False),sg.Push()],
          [sg.Button('Enter', size=(30,10)),sg.Push(), sg.Button('Exit', size=(30,10))]
 ]
-window = sg.Window("FINance GBT", layout, size= (500,500), resizable=True)
+window = sg.Window("FINance GBT", layout, size= (500,700), resizable=True)
 sg.cprint_set_output_destination(window, '-MULTI-')
 while True:
     event, values = window.read()
