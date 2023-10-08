@@ -1,9 +1,6 @@
-Jack
-Daniels
-Jax
-False
-0
-0
-0
-0.0
-0.0
+Marion
+Forrest
+Jacksonville
+True
+15.0
+13

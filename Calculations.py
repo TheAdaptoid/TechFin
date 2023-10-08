@@ -96,3 +96,15 @@ def Calc_Expense_Breakdowns(expenseList:list):
 def Calc_Largest_Expense(expenseList:list):
     expenseDict = Calc_Expense_Breakdown(expenseList)
     return max(expenseDict, key=expenseDict.get)
+
+def Calc_Total_Weekly_Expense(expenseList:list):
+    totalWeeklyExpense = 0
+    for expense in expenseList:
+        if "Weekly" in expense.Get_Frequency():
+            totalWeeklyExpense = totalWeeklyExpense + expense.Get_Amount()
+        elif "Monthly" in expense.Get_Frequency():
+            yearlyExpense = expense.Get_Amount() * 12
+            totalWeeklyExpense = totalWeeklyExpense + (yearlyExpense / 52)
+        elif "Yearly" in expense.Get_Frequency():
+            totalWeeklyExpense = totalWeeklyExpense + (expense.Get_Amount() / 52)
+    return totalWeeklyExpense

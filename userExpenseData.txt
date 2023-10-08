@@ -1,0 +1,3 @@
+Spotify,Subscriptions,6.99,Monthly
+Fast Food,Dining Out,50.0,Weekly
+Groceries,Groceries,50.0,Monthly

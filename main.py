@@ -78,9 +78,26 @@ def main():
     grossWeeklyIncome = Calculations.Calc_Weekly_Income(hourlyRate, weeklyHours)
     taxedAnnualIncome = Calculations.Calc_Anual_Income_After_Tax(grossWeeklyIncome)
     taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(taxedAnnualIncome)
-
-    #send to gpt
+    totalWeeklyExpense = Calculations.Calc_Total_Weekly_Expense(expenseList)
     largestExpense = Calculations.Calc_Largest_Expense(expenseList)
-    print(largestExpense)
 
+    #Initial Analysis
+    print("Conducting Analysis...")
+    pastContext = ""
+
+    if totalWeeklyExpense >= grossWeeklyIncome:
+        print(OI.Announce_Over_Budget(grossWeeklyIncome, totalWeeklyExpense, largestExpense, Calculations.Calc_Expense_Proportion(Calculations.Calc_Expense_Breakdown(expenseList), largestExpense), firstName))
+    else:
+        print(OI.Announce_Under_Budget(grossWeeklyIncome, totalWeeklyExpense, firstName))
+
+    while True:
+        chatOut = OI.Ask_User_For_Prompt(pastContext, firstName)
+        print(chatOut)
+        pastContext += f"Advisor: {chatOut}\n"
+
+        inputPrompt = str(input("User: "))
+        chatIn = OI.Direct_User_Input(pastContext, inputPrompt)
+        print(chatIn)
+        pastContext += f"{firstName}: {chatIn}\n"
+        
 main()
