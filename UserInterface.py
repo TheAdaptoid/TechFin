@@ -9,8 +9,8 @@ default_font = 'Roboto Mono'
 openningGreeting = "Hello"
 layout = [
          [sg.Text(f"{openningGreeting}")],
-         [sg.Push(),sg.Multiline(size=(130,27), key= '-MULTI-', disabled=True),sg.Push()],
-         [sg.Push(),sg.Input(size=(130,400), key = '-IN-'),sg.Push()],
+         [sg.Push(),sg.Multiline(size=(130,17), key= '-MULTI-', disabled=True, font=("Roboto Mono", 16)),sg.Push()],
+         [sg.Push(),sg.Input(size=(130,400), key = '-IN-',font=('Roboto Mono', 16)),sg.Push()],
          [sg.Push(),sg.Button('Enter', size=(27,10)), sg.Button('Exit', size=(28,10)),sg.Push()]
 ]
 window = sg.Window("FINance GBT", layout, size= (500,700), resizable=True)
@@ -21,7 +21,7 @@ while True:
         break
 
     if event == "Enter":
-       sg.cprint(values['-IN-'])
+       sg.cprint("User - " + values['-IN-'])
 
 
 window.close()
