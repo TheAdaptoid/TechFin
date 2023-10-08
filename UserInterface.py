@@ -5,11 +5,12 @@ import Expenses
 import PySimpleGUI as sg
 
 sg.theme("DarkBlue14")
+default_font = 'Roboto Mono'
 openningGreeting = "Hello"
 layout = [
          [sg.Text(f"{openningGreeting}")],
          [sg.Output(size=(70,27), key= '-IN-')],
-         [sg.Push(),sg.Button('Enter'), sg.Button('Exit'),sg.Push()]
+         [sg.Push(),sg.Button('Enter', size=(10,10)), sg.Button('Exit', size=(10,10)),sg.Push()]
 ]
 window = sg.Window("FINance GBT", layout, size= (500,500), resizable=True)
 
