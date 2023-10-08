@@ -11,9 +11,9 @@ layout = [
          [sg.Text(f"{openningGreeting}")],
          [sg.Push(),sg.Multiline(size=(130,27), key= '-MULTI-', disabled=True),sg.Push()],
          [sg.Push(),sg.Input(size=(130,400), key = '-IN-'),sg.Push()],
-         [sg.Button('Enter', size=(30,10)),sg.Push(), sg.Button('Exit', size=(30,10))]
+         [sg.Push(),sg.Button('Enter', size=(27,10)), sg.Button('Exit', size=(28,10)),sg.Push()]
 ]
-window = sg.Window("FINance GBT", layout, size= (500,500), resizable=True)
+window = sg.Window("FINance GBT", layout, size= (500,700), resizable=True)
 sg.cprint_set_output_destination(window, '-MULTI-')
 while True:
     event, values = window.read()
