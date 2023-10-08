@@ -1,17 +1,37 @@
 #Local Imports
+import Expenses
 import OpenIntegrations as OI
-import PySimpleGUI as sg
 
-#AI integration
-initialContext = OI.Setup_Persistent_Context("John", "Foster", "Orlando", True, 35.0, 40, None)
+#Other Imports
+import PySimpleGUI as sg
+import json
+
+#Import user data
+try:
+    with open("User_Data.json", "r") as file:
+        user_data = json.load(file)
+    userExpenseDataFile = open("userExpenseData.txt", "r")
+    expenseList = []
+    for line in userExpenseDataFile:
+        temp = line.split(",")
+        expenseList.append(Expenses.Expense(str(temp[0]), str(temp[1]), float(temp[2]), str(temp[3])))
+    expensesListed = ""
+    for expense in expenseList:
+        expensesListed = expensesListed + expense.To_String()
+except FileNotFoundError:
+    print("No User Data Files Found")
+
+#AI integration and set up
+initialContext = OI.Setup_Persistent_Context(user_data["firstName"], user_data["lastName"], user_data["location"], user_data["isEmployed"], user_data["hourlyWage"], user_data["weeklyHours"], expensesListed)
 chatFunction = OI.Create_Chat_Function(initialContext, "Fin")
 currentContext = OI.OpenAiConnection.create_new_context()
 currentContext["history"] = ""
 
+#Building the GUI
 cprint = sg.cprint
 sg.theme("DarkBlue14")
 default_font = 'Roboto Mono'
-openningGreeting = "Say Hi to Fin, Your personal AI financial assistant"
+openningGreeting = "Say hi to Fin, Your personal financial advisor"
 layout = [
          [sg.Push(),sg.Text((f"{openningGreeting}"),font=("Roboto Mono", 16)),sg.Push()],
          [sg.Push(),sg.Multiline(size=(138,17), key= '-MULTI-', disabled=True, font=("Roboto Mono", 16)),sg.Push()],

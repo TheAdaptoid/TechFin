@@ -1,0 +1,8 @@
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "location": "Orlando",
+    "isEmployed": true,
+    "hourlyWage": 35.0,
+    "weeklyHours": 40
+}
