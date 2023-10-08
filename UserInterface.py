@@ -14,10 +14,10 @@ sg.theme("DarkBlue14")
 default_font = 'Roboto Mono'
 openningGreeting = "Say Hi to Fin, Your personal AI financial assistant"
 layout = [
-         [sg.Text((f"{openningGreeting}"),font=("Roboto Mono", 16))],
-         [sg.Push(),sg.Multiline(size=(130,17), key= '-MULTI-', disabled=True, font=("Roboto Mono", 16)),sg.Push()],
+         [sg.Push(),sg.Text((f"{openningGreeting}"),font=("Roboto Mono", 16)),sg.Push()],
+         [sg.Push(),sg.Multiline(size=(138,17), key= '-MULTI-', disabled=True, font=("Roboto Mono", 16)),sg.Push()],
          [sg.Push(),sg.Input(size=(130,400), key = '-IN-', do_not_clear=False, font=("Roboto Mono", 16)),sg.Push()],
-         [sg.Push(),sg.Button('Enter', size=(28,10)), sg.Button('Exit', size=(41,10)),sg.Push()]
+         [sg.Push(),sg.Button('Enter', size=(27,10)), sg.Button('Exit', size=(27,10)),sg.Push()]
 ]
 window = sg.Window("FINance GBT", layout, size= (500,700), resizable=True)
 sg.cprint_set_output_destination(window, '-MULTI-')
