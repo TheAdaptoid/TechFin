@@ -16,3 +16,6 @@ class Expense:
 
     def Get_Frequency(self):
         return str(self.expenseFrequency).title()
+    
+    def To_String(self):
+        return f"{self.expenseName},{self.expenseCategory},{self.expenseAmount},{self.expenseFrequency}"

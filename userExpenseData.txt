@@ -1,3 +1,5 @@
 Spotify,Subscriptions,6.99,Monthly
+Netflix,Subscriptions,15.99,Monthly
 Fast Food,Dining Out,50.0,Weekly
-Groceries,Groceries,50.0,Monthly
+Groceries,Groceries,150.0,Monthly
+Rent,Bills & Utilities,1300.0,Monthly

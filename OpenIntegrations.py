@@ -27,7 +27,7 @@ def Trip_Plan_Suggestion(location:str, budget:float):
     return result()
 
 def Announce_Under_Budget(weeklyIncome:float, weeklyExpense:float, userName:str):
-    inputPrompt = f"Congratulate {userName} for being under budget and saving ${round(weeklyIncome - weeklyExpense, 2)} this past week. Also suggest what {userName} could do to with money they saved."
+    inputPrompt = f"{contextClue} Congratulate {userName} for being under budget and saving ${round(weeklyIncome - weeklyExpense, 2)} this past week. Also suggest what {userName} could do to with money they saved."
     result = OpenAiConnection.create_semantic_function(inputPrompt)
     return result()
 
@@ -36,13 +36,47 @@ def Announce_Over_Budget(weeklyIncome:float, weeklyExpense:float, expenseCategor
     result = OpenAiConnection.create_semantic_function(inputPrompt)
     return result()
 
-def Direct_User_Input(pastContext:str, inputPrompt:str):
-    result = OpenAiConnection.create_semantic_function(f"{contextClue} Past Context: {pastContext}. inputPrompt")
-    return result()
+#persistent context
+def Create_Chat_Function(setupPrompt:str, chatName:str):
+    chatFunction = OpenAiConnection.create_semantic_function(setupPrompt, chatName, max_tokens=2000, temperature=0.7, top_p=0.5)
+    return chatFunction
 
-def Ask_User_For_Prompt(pastContext:str, userName:str):
-    inputPrompt = f"{contextClue} Past Context: {pastContext}. Ask {userName} if there is anything else you could help them with."
-    result = OpenAiConnection.create_semantic_function(inputPrompt)
-    return result()
+def Setup_Persistent_Context(firstName:str, lastName:str, location:str, isEmployed:bool,
+                            hourlyRate:float, weeklyHours:int, expensesListed:list):
+    setupPrompt = f"""
+You are a friendly, digital personal financial advisor named Fin. Your goal is to help your client optimize their finances.
+Try to keep your resposes short but informative. And after every response, ask the client if they have any more questions.
+Your client is {firstName}.
 
-#debuggin
+Here is some background information about your client:
+First Name: {firstName}
+Last Name: {lastName}
+City of Residence: {location}
+Employed: {isEmployed}
+Hourly Pay Rate: ${hourlyRate}
+Hours worked per week: {weeklyHours}
+
+Here is a list of their expenses with each expense in the format of the name of expense, expense Category, expense Amount, payment Frequency):
+{expensesListed}"""
+
+    setupPrompt += """
+{{$history}}
+Client: {{$clientInput}}
+Fin: """
+
+    return setupPrompt
+
+"""
+print("Conducting Analysis...")
+    initialContext = OI.Setup_Persistent_Context(firstName, lastName, location, isEmployed, hourlyRate, weeklyHours, expensesListed)
+    chatFunction = OI.Create_Chat_Function(initialContext, "Fin")
+
+    currentContext = OI.OpenAiConnection.create_new_context()
+    currentContext["history"] = ""
+
+    while 0:
+        currentContext["clientInput"] = str(input(""))
+        finResponse = chatFunction.invoke(context=currentContext)
+        print(finResponse)
+        currentContext["history"] += f"\nClient: {currentContext['clientInput']}\nFin: {finResponse}\n"
+"""

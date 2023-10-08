@@ -80,24 +80,22 @@ def main():
     taxedWeeklyIncome = Calculations.Calc_Weekly_Income_After_Tax(taxedAnnualIncome)
     totalWeeklyExpense = Calculations.Calc_Total_Weekly_Expense(expenseList)
     largestExpense = Calculations.Calc_Largest_Expense(expenseList)
+    expensesListed = ""
+    for expense in expenseList:
+        expensesListed = expensesListed + expense.To_String()
 
-    #Initial Analysis
+    #Initial Analysis ||KEEP||
     print("Conducting Analysis...")
-    pastContext = ""
+    initialContext = OI.Setup_Persistent_Context(firstName, lastName, location, isEmployed, hourlyRate, weeklyHours, expensesListed)
+    chatFunction = OI.Create_Chat_Function(initialContext, "Fin")
 
-    if totalWeeklyExpense >= grossWeeklyIncome:
-        print(OI.Announce_Over_Budget(grossWeeklyIncome, totalWeeklyExpense, largestExpense, Calculations.Calc_Expense_Proportion(Calculations.Calc_Expense_Breakdown(expenseList), largestExpense), firstName))
-    else:
-        print(OI.Announce_Under_Budget(grossWeeklyIncome, totalWeeklyExpense, firstName))
+    currentContext = OI.OpenAiConnection.create_new_context()
+    currentContext["history"] = ""
 
-    while True:
-        chatOut = OI.Ask_User_For_Prompt(pastContext, firstName)
-        print(chatOut)
-        pastContext += f"Advisor: {chatOut}\n"
-
-        inputPrompt = str(input("User: "))
-        chatIn = OI.Direct_User_Input(pastContext, inputPrompt)
-        print(chatIn)
-        pastContext += f"{firstName}: {chatIn}\n"
+    while 0:
+        currentContext["clientInput"] = str(input(""))
+        finResponse = chatFunction.invoke(context=currentContext)
+        print(finResponse)
+        currentContext["history"] += f"\nClient: {currentContext['clientInput']}\nFin: {finResponse}\n"
         
 main()
