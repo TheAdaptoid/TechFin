@@ -1,7 +1,6 @@
 #Local Imports
 import OpenIntegrations as OI
 import PySimpleGUI as sg
-import keyboard
 
 #AI integration
 initialContext = OI.Setup_Persistent_Context("John", "Foster", "Orlando", True, 35.0, 40, None)
