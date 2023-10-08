@@ -92,7 +92,7 @@ def main():
     currentContext = OI.OpenAiConnection.create_new_context()
     currentContext["history"] = ""
 
-    while 0:
+    while 1:
         currentContext["clientInput"] = str(input(""))
         finResponse = chatFunction.invoke(context=currentContext)
         print(finResponse)
